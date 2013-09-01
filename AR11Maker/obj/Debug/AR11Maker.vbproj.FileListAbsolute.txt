@@ -1,0 +1,18 @@
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\bin\Debug\AR11Maker.exe.config
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\bin\Debug\AR11Maker.exe
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\bin\Debug\AR11Maker.pdb
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\bin\Debug\AR11Maker.xml
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\obj\Debug\AR11Maker.Resources.resources
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\obj\Debug\AR11Maker.vbproj.GenerateResource.Cache
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\obj\Debug\AR11Maker.exe
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\obj\Debug\AR11Maker.xml
+C:\Users\Dan\AppData\Local\Temporary Projects\AR11Maker\obj\Debug\AR11Maker.pdb
+D:\Data\Projects\AR11Maker\AR11Maker\bin\Debug\AR11Maker.exe.config
+D:\Data\Projects\AR11Maker\AR11Maker\obj\Debug\AR11Maker.exe
+D:\Data\Projects\AR11Maker\AR11Maker\obj\Debug\AR11Maker.xml
+D:\Data\Projects\AR11Maker\AR11Maker\obj\Debug\AR11Maker.pdb
+D:\Data\Projects\AR11Maker\AR11Maker\bin\Debug\AR11Maker.exe
+D:\Data\Projects\AR11Maker\AR11Maker\bin\Debug\AR11Maker.pdb
+D:\Data\Projects\AR11Maker\AR11Maker\bin\Debug\AR11Maker.xml
+D:\Data\Projects\AR11Maker\AR11Maker\obj\Debug\AR11Maker.Resources.resources
+D:\Data\Projects\AR11Maker\AR11Maker\obj\Debug\AR11Maker.vbproj.GenerateResource.Cache
