@@ -112,7 +112,7 @@ Module MainModule
                 newlines.Add(temp)
                 currentsection = l
                 processedlines += 1
-                Console.WriteLine("Processed {0}/{1} objects", processedlines, linecount)
+                Console.WriteLine("Processed {0}/{1} lines", processedlines, linecount)
                 Continue For
             End If
 
