@@ -18,7 +18,7 @@ Module MainModule
                     Console.WriteLine("Press any key to select another beatmap")
                     Console.ReadKey()
                 Else
-                    Application.Exit()
+                    Exit Do
                 End If
             End Using
         Loop
