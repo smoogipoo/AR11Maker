@@ -1,22 +1,25 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
+    Private Const Version As String = "1.0.0.0"
 
     Sub Main()
-A:
-        Using ofd As New OpenFileDialog
-            ofd.Title = "Please select the .osu file you want to convert."
-            If ofd.ShowDialog = DialogResult.OK Then
-                Console.ForegroundColor = ConsoleColor.White
-                If ofd.FileName.Substring(ofd.FileName.LastIndexOf(".")) = ".osu" Then
-                    ProcessBeatmap(ofd.FileName)
-                Else
-                    Console.WriteLine("The selected file was not a valid osu beatmap file (.osu)")
+        Console.WriteLine("Welcome to AR11Maker for osu! version: {0}", Version)
+        Do
+            Using ofd As New OpenFileDialog
+                ofd.Title = "Please select the .osu file you want to convert."
+                ofd.Filter = "osu! Beatmap Files (*.osu)|*.osu"
+                If ofd.ShowDialog = DialogResult.OK Then
+                    Console.ForegroundColor = ConsoleColor.White
+                    If ofd.FileName.Substring(ofd.FileName.LastIndexOf(".")) = ".osu" Then
+                        ProcessBeatmap(ofd.FileName)
+                    Else
+                        Console.WriteLine("The selected file was not a valid osu beatmap file (.osu)")
+                    End If
+                    Console.WriteLine("Press any key to select another beatmap")
+                    Console.ReadKey()
                 End If
-                Console.WriteLine("Press any key to select another beatmap")
-                Console.ReadKey()
-                GoTo A
-            End If
-        End Using
+            End Using
+        Loop
     End Sub
 
     Sub ProcessBeatmap(ByVal file As String)
