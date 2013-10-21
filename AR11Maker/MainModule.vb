@@ -6,8 +6,12 @@ A:
         Using ofd As New OpenFileDialog
             ofd.Title = "Please select the .osu file you want to convert."
             If ofd.ShowDialog = DialogResult.OK Then
-                ProcessBeatmap(ofd.FileName)
                 Console.ForegroundColor = ConsoleColor.White
+                If ofd.FileName.Substring(ofd.FileName.LastIndexOf(".")) = ".osu" Then
+                    ProcessBeatmap(ofd.FileName)
+                Else
+                    Console.WriteLine("The selected file was not a valid osu beatmap file (.osu)")
+                End If
                 Console.WriteLine("Press any key to select another beatmap")
                 Console.ReadKey()
                 GoTo A
