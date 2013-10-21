@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
-    Private Const Version As String = "1.0.0.0"
+    Private Const Version As String = "1.0.0.2"
 
     Sub Main()
         Console.WriteLine("Welcome to AR11Maker for osu! version: {0}", Version)
@@ -161,27 +161,29 @@ Module MainModule
 
             If (currentsection = "[HitObjects]") Then
                 Dim timing As String = SubStr(l, nthDexOf(l, ",", 1) + 1, nthDexOf(l, ",", 2))
+                Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
                 If nthDexOf(l, ",", 5) <> -1 Then
                     Dim s As String = SubStr(l, nthDexOf(l, ",", 4) + 1, nthDexOf(l, ",", 5))
-                    If (s.Contains(":")) Or (s.Contains("L")) Or (s.Contains("P")) Or (s.Contains("|")) Then
-                        Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
+                    If (s.Contains("L")) Or (s.Contains("P")) Or (s.Contains("B")) Or (s.Contains("|")) Then
+                        'Slider
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2))
                     Else
                         Try
-                            Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
+                            'Spinner
                             Dim newsecondtiming As String = Math.Round(CInt(s) * 1.5).ToString
                             temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2), nthDexOf(l, ",", 4) + 1) & newsecondtiming & SubStr(l, nthDexOf(l, ",", 5))
                         Catch
-                            Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
+                            'Circle
                             temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, (nthDexOf(l, ",", 2)))
                         End Try
                     End If
                 Else
-                    Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
                     Try
+                        'Spinner
                         Dim newsecondtiming As String = Math.Round(CInt(SubStr(l, nthDexOf(l, ",", 4) + 1)) * 1.5).ToString
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2), nthDexOf(l, ",", 4) + 1) & newsecondtiming
                     Catch
+                        'Circle
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2))
                     End Try
 
