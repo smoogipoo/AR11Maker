@@ -202,7 +202,7 @@ Module MainModule
                 sw.WriteLine(l)
             Next
         End Using
-        Console.WriteLine("Done!")
+        Console.WriteLine("Done. Press the F5 button to refresh the osu! map list and the map will be shown!")
     End Sub
 
     'Homebrewed functions which work close to as fast as Substring & IndexOf in CPU time and faster than String.Split()
