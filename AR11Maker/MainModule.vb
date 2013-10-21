@@ -148,13 +148,13 @@ Module MainModule
             If (currentsection = "[TimingPoints]") Then
                 Try
                     Dim timing As String = l.Substring(0, l.IndexOf(","))
-                    Dim bpmratio As Double = CDbl(SubStr(l, nthDexOf(l, ",", 0) + 1, nthDexOf(l, ",", 1)))
+                    Dim bpmratio As Double = CDbl(SubStr(l, nthDexOf(l, ",", 0) + 1, nthDexOf(l, ",", 1)).Replace(",", "."))
                     Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
                     If bpmratio > 0 Then
                         Dim bpm As Double = 60000 / bpmratio
                         bpmratio = 60000 / (bpm - 0.3333333333333 * bpm)
                     End If
-                    temp = newtiming & "," & bpmratio & l.Substring(l.IndexOf(",", l.IndexOf(",") + 1))
+                    temp = newtiming & "," & bpmratio.ToString.Replace(",", ".") & l.Substring(l.IndexOf(",", l.IndexOf(",") + 1))
                 Catch
                 End Try
             End If
