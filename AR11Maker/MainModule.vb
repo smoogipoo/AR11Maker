@@ -11,7 +11,19 @@ Module MainModule
                 If ofd.ShowDialog = DialogResult.OK Then
                     Console.ForegroundColor = ConsoleColor.White
                     If ofd.FileName.Substring(ofd.FileName.LastIndexOf(".")) = ".osu" Then
-                        ProcessBeatmap(ofd.FileName)
+                        Try
+                            ProcessBeatmap(ofd.FileName)
+                        Catch ex As Exception
+                            Console.WriteLine("A fatal error has occured and the program was not able to complete the conversion process.")
+                            Console.WriteLine("Please take a screenshot of the following error and follow up on the forum:")
+                            Console.WriteLine()
+                            Dim location As String = ofd.FileName.Substring(0, ofd.FileName.LastIndexOf("\"))
+                            Dim beatmapname As String = ofd.FileName.Substring(ofd.FileName.LastIndexOf("\") + 1)
+                            Dim beatmap As String = ""
+                            beatmap = beatmapname.Substring(beatmapname.LastIndexOf("\") + 1)
+                            Console.WriteLine("Map: " & beatmap & "\" & beatmapname)
+                            Console.WriteLine("Message: " & ex.Message)
+                        End Try
                     Else
                         Console.WriteLine("The selected file was not a valid osu beatmap file (.osu)")
                     End If
