@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
-    Private Const Version As String = "1.0.0.4"
+    Private Const Version As String = "1.0.0.5"
 
     Sub Main()
         Application.CurrentCulture = New Globalization.CultureInfo("en-US", False)
@@ -40,6 +40,7 @@ Module MainModule
     Sub ProcessBeatmap(ByVal file As String)
         Console.ForegroundColor = ConsoleColor.White
         Dim beatmapname As String = file.Substring(file.LastIndexOf("\") + 1, file.LastIndexOf(".") - (file.LastIndexOf("\") + 1))
+        Dim newbeatmapname As String = beatmapname.Substring(0, beatmapname.LastIndexOf("]")) & "AR11" & "]"
         Dim beatmaplocation As String = file.Substring(0, file.LastIndexOf("\"))
         Dim beatmapcontents As New IO.StreamReader(file)
         Dim mp3filename As String = ""
@@ -50,15 +51,22 @@ Module MainModule
                 Exit Do
             End If
         Loop
-        Dim newbeatmapname As String = beatmapname.Substring(0, beatmapname.LastIndexOf("]")) & "AR11" & "]"
         Dim newmp3filename As String = (mp3filename.Substring(0, mp3filename.ToLower.IndexOf(".mp3")) & "forAR11.mp3").Replace(" ", "")
 
         Console.ForegroundColor = ConsoleColor.Green
         Console.WriteLine("Processing audio data")
         Console.ForegroundColor = ConsoleColor.White
 
-        'Use lame to convert mp3 to wav -> Change tempo by -33.333% with soundstretch -> Use lame to convert wav to mp3
         If My.Computer.FileSystem.FileExists(beatmaplocation & "\" & newmp3filename) = False Then
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\temp.mp3") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\temp.mp3")
+            End If
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\temp.wav") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\temp.wav")
+            End If
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\temp2.wav") Then
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\temp2.wav")
+            End If
             My.Computer.FileSystem.CopyFile(beatmaplocation & "\" & mp3filename, Application.StartupPath & "\temp.mp3")
             Shell(Application.StartupPath & "\lame.exe --decode temp.mp3 temp.wav", AppWinStyle.Hide, True)
             Shell(Application.StartupPath & "\soundstretch.exe temp.wav temp2.wav -tempo=-33.333333333333%", AppWinStyle.Hide, True)
@@ -149,13 +157,13 @@ Module MainModule
             If (currentsection = "[TimingPoints]") Then
                 Try
                     Dim timing As String = l.Substring(0, l.IndexOf(","))
-                    Dim bpmratio As Double = CDbl(SubStr(l, nthDexOf(l, ",", 0) + 1, nthDexOf(l, ",", 1)))
+                    Dim bpmdelay As Double = CDbl(SubStr(l, nthDexOf(l, ",", 0) + 1, nthDexOf(l, ",", 1)))
                     Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
-                    If bpmratio > 0 Then
-                        Dim bpm As Double = 60000 / bpmratio
-                        bpmratio = 60000 / (bpm - 0.3333333333333 * bpm)
+                    If bpmdelay > 0 Then
+                        Dim bpm As Double = 60000 / bpmdelay
+                        bpmdelay = 60000 / (0.666666666666666 * bpm)
                     End If
-                    temp = newtiming & "," & bpmratio & l.Substring(l.IndexOf(",", l.IndexOf(",") + 1))
+                    temp = newtiming & "," & bpmdelay & l.Substring(l.IndexOf(",", l.IndexOf(",") + 1))
                 Catch
                 End Try
             End If
