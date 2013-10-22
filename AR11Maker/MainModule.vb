@@ -3,7 +3,7 @@ Module MainModule
     Private Const Version As String = "1.0.0.3"
 
     Sub Main()
-        Application.CurrentCulture = New Globalization.CultureInfo("EN-US")
+        Application.CurrentCulture = New Globalization.CultureInfo("en-US", False)
         Console.WriteLine("Welcome to AR11Maker for osu! version: {0}", Version)
         Do
             Using ofd As New OpenFileDialog
