@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
-    Private Const Version As String = "1.0.0.3"
+    Private Const Version As String = "1.0.0.4"
 
     Sub Main()
         Application.CurrentCulture = New Globalization.CultureInfo("en-US", False)
