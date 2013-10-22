@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
-    Private Const Version As String = "1.0.0.5"
+    Private Const Version As String = "1.0.0.6"
 
     Sub Main()
         Application.CurrentCulture = New Globalization.CultureInfo("en-US", False)
@@ -39,6 +39,7 @@ Module MainModule
 
     Sub ProcessBeatmap(ByVal file As String)
         Console.ForegroundColor = ConsoleColor.White
+        Dim UniversalOffset As Integer = -95
         Dim beatmapname As String = file.Substring(file.LastIndexOf("\") + 1, file.LastIndexOf(".") - (file.LastIndexOf("\") + 1))
         Dim newbeatmapname As String = beatmapname.Substring(0, beatmapname.LastIndexOf("]")) & "AR11" & "]"
         Dim beatmaplocation As String = file.Substring(0, file.LastIndexOf("\"))
@@ -146,8 +147,8 @@ Module MainModule
                     If l.Substring(0, 1) = "2" Then
                         Dim breaktiming1 As Integer = l.Substring(l.IndexOf(",") + 1, l.LastIndexOf(",") - (l.IndexOf(",") + 1))
                         Dim breaktiming2 As Integer = l.Substring(l.LastIndexOf(",") + 1)
-                        Dim newbreaktiming1 As Integer = breaktiming1 * 1.5
-                        Dim newbreaktiming2 As Integer = breaktiming2 * 1.5
+                        Dim newbreaktiming1 As Integer = breaktiming1 * 1.5 + UniversalOffset
+                        Dim newbreaktiming2 As Integer = breaktiming2 * 1.5 + UniversalOffset
                         temp = "2," & newbreaktiming1 & "," & newbreaktiming2
                     End If
                 Catch
@@ -158,7 +159,7 @@ Module MainModule
                 Try
                     Dim timing As String = l.Substring(0, l.IndexOf(","))
                     Dim bpmdelay As Double = CDbl(SubStr(l, nthDexOf(l, ",", 0) + 1, nthDexOf(l, ",", 1)))
-                    Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
+                    Dim newtiming As String = Math.Round(CInt(timing) * 1.5 + UniversalOffset).ToString
                     If bpmdelay > 0 Then
                         Dim bpm As Double = 60000 / bpmdelay
                         bpmdelay = 60000 / (0.666666666666666 * bpm)
@@ -170,7 +171,7 @@ Module MainModule
 
             If (currentsection = "[HitObjects]") Then
                 Dim timing As String = SubStr(l, nthDexOf(l, ",", 1) + 1, nthDexOf(l, ",", 2))
-                Dim newtiming As String = Math.Round(CInt(timing) * 1.5).ToString
+                Dim newtiming As String = Math.Round(CInt(timing) * 1.5 + UniversalOffset).ToString
                 If nthDexOf(l, ",", 5) <> -1 Then
                     Dim s As String = SubStr(l, nthDexOf(l, ",", 4) + 1, nthDexOf(l, ",", 5))
                     If (s.Contains("L")) Or (s.Contains("P")) Or (s.Contains("B")) Or (s.Contains("|")) Then
@@ -179,7 +180,7 @@ Module MainModule
                     Else
                         Try
                             'Spinner
-                            Dim newsecondtiming As String = Math.Round(CInt(s) * 1.5).ToString
+                            Dim newsecondtiming As String = Math.Round(CInt(s) * 1.5 + UniversalOffset).ToString
                             temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2), nthDexOf(l, ",", 4) + 1) & newsecondtiming & SubStr(l, nthDexOf(l, ",", 5))
                         Catch
                             'Circle
@@ -189,7 +190,7 @@ Module MainModule
                 Else
                     Try
                         'Spinner
-                        Dim newsecondtiming As String = Math.Round(CInt(SubStr(l, nthDexOf(l, ",", 4) + 1)) * 1.5).ToString
+                        Dim newsecondtiming As String = Math.Round(CInt(SubStr(l, nthDexOf(l, ",", 4) + 1)) * 1.5 + UniversalOffset).ToString
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2), nthDexOf(l, ",", 4) + 1) & newsecondtiming
                     Catch
                         'Circle
