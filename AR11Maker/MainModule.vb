@@ -1,6 +1,6 @@
 ﻿Imports System.Windows.Forms
 Module MainModule
-    Private Const Version As String = "1.0.0.6"
+    Private Const Version As String = "1.0.0.7"
 
     Sub Main()
         Application.CurrentCulture = New Globalization.CultureInfo("en-US", False)
@@ -20,10 +20,9 @@ Module MainModule
                             Console.WriteLine()
                             Dim location As String = ofd.FileName.Substring(0, ofd.FileName.LastIndexOf("\"))
                             Dim beatmapname As String = ofd.FileName.Substring(ofd.FileName.LastIndexOf("\") + 1)
-                            Dim beatmap As String = ""
-                            beatmap = beatmapname.Substring(beatmapname.LastIndexOf("\") + 1)
-                            Console.WriteLine("Map: " & beatmap & "\" & beatmapname)
+                            Console.WriteLine("Map: " & beatmapname)
                             Console.WriteLine("Message: " & ex.Message)
+                            Console.WriteLine("StackTrace: " & ex.StackTrace)
                         End Try
                     Else
                         Console.WriteLine("The selected file was not a valid osu beatmap file (.osu)")
@@ -113,7 +112,7 @@ Module MainModule
             If l = "" Then
                 newlines.Add(l)
                 processedlines += 1
-                Console.WriteLine("Processed {0}/{1} objects", processedlines, linecount)
+                Console.WriteLine("Processed {0}/{1} lines", processedlines, linecount)
                 Continue For
             End If
             Dim temp As String = l
@@ -174,7 +173,7 @@ Module MainModule
                 Dim newtiming As String = Math.Round(CInt(timing) * 1.5 + UniversalOffset).ToString
                 If nthDexOf(l, ",", 5) <> -1 Then
                     Dim s As String = SubStr(l, nthDexOf(l, ",", 4) + 1, nthDexOf(l, ",", 5))
-                    If (s.Contains("L")) Or (s.Contains("P")) Or (s.Contains("B")) Or (s.Contains("|")) Then
+                    If (s.Contains("L")) Or (s.Contains("P")) Or (s.Contains("B")) Or (s.Contains("C")) Or (s.Contains("|")) Then 'Sliders exist in the form X|x:y where X is L,P,B, or C
                         'Slider
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2))
                     Else
@@ -196,7 +195,6 @@ Module MainModule
                         'Circle
                         temp = SubStr(l, 0, nthDexOf(l, ",", 1) + 1) & newtiming & SubStr(l, nthDexOf(l, ",", 2))
                     End Try
-
                 End If
             End If
             newlines.Add(temp)

@@ -25,3 +25,12 @@ C:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.pdb
 C:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.xml
 C:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.Resources.resources
 C:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.vbproj.GenerateResource.Cache
+D:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.exe.config
+D:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.exe
+D:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.pdb
+D:\Data\Copy\AR11Maker\AR11Maker\bin\Debug\AR11Maker.xml
+D:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.Resources.resources
+D:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.vbproj.GenerateResource.Cache
+D:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.exe
+D:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.xml
+D:\Data\Copy\AR11Maker\AR11Maker\obj\Debug\AR11Maker.pdb
